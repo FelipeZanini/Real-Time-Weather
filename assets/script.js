@@ -18,8 +18,8 @@ function updateDOM(city, data) {
     var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
     $('#wicon').attr('src', iconurl);
     $("#temperature").text(data.main.temp + " °C");
-    $("#max-temp").text("Highest Temperature: "+data.main.temp_max+" °C");
-    $("#min-temp").text("Lowest Temperature: "+data.main.temp_min+" °C");
+    $("#max-temp").text("highest: "+data.main.temp_max+" °C");
+    $("#min-temp").text("Lowest: "+data.main.temp_min+" °C");
     $("#wind").text(`Wind: ${Math.floor(data.wind.speed * 3.6)} Km/h`);
     $("#humidity").text("Humidity: "+data.main.humidity+" %");
     $("#city-name").text(data.name);
