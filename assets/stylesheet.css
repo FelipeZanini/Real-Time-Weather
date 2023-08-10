@@ -1,4 +1,11 @@
 #weather-status {
 color: rgb(48, 6, 6);
 font-size: 1.5rem;
+display: block;
+}
+
+#city {
+    display: inline;
+    width: 40%;
+    justify-content: center;
 }
