@@ -14,9 +14,16 @@ async function getWeatherData(city) {
 };
 
 function updateDOM(city, data) {
+    var iconcode = data.weather[0].icon;
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    $('#wicon').attr('src', iconurl);
     $("#temperature").text(data.main.temp + " °C");
-    $("#wind").text(Math.floor(data.wind.speed * 3.6) + " Km/h");
+    $("#max-temp").text("Highest Temperature: "+data.main.temp_max+" °C");
+    $("#min-temp").text("Lowest Temperature: "+data.main.temp_min+" °C");
+    $("#wind").text(`Wind: ${Math.floor(data.wind.speed * 3.6)} Km/h`);
+    $("#humidity").text("Humidity: "+data.main.humidity+" %");
     $("#city-name").text(data.name);
+    $(".hide").removeClass("hide");
 };
 
 function searchCity() {

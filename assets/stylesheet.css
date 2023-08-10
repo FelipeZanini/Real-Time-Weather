@@ -4,8 +4,25 @@ font-size: 1.5rem;
 display: block;
 }
 
+#search-box{
+margin-top: 80px;
+}
+
 #city {
     display: inline;
     width: 40%;
     justify-content: center;
+}
+
+#wicon {
+    width: 150px;
+    height: 150px;
+}
+
+#temperature{
+    font-size: 2.5rem;
+}
+
+.hide {
+    display: none;
 }
