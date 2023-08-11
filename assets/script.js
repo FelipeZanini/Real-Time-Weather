@@ -23,6 +23,7 @@ function updateDOM(city, data) {
     $("#wind").text(`Wind: ${Math.floor(data.wind.speed * 3.6)} Km/h`);
     $("#humidity").text("Humidity: "+data.main.humidity+" %");
     $("#city-name").text(data.name);
+    $("#description").text(data.weather[0].description);
     $(".hide").removeClass("hide");
 };
 
