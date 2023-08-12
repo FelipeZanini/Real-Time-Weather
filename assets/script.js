@@ -10,7 +10,7 @@ async function getWeatherData(city) {
         alert("This is not a valid city name!");
     };
 
-    
+
 };
 
 function updateDOM(city, data) {
@@ -22,7 +22,8 @@ function updateDOM(city, data) {
     $("#min-temp").text("Lowest: "+data.main.temp_min+" °C");
     $("#wind").text(`Wind: ${Math.floor(data.wind.speed * 3.6)} Km/h`);
     $("#humidity").text("Humidity: "+data.main.humidity+" %");
-    $("#city-name").text(data.name);
+    $("#city-name").html(data.name+`<span id="country-name"class="badge badge-light">Light</span>`);
+    $("#country-name").text(data.sys.country);
     $("#description").text(data.weather[0].description);
     $(".hide").removeClass("hide");
 };
