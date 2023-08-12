@@ -18,15 +18,20 @@ function updateDOM(city, data) {
     var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
     $('#wicon').attr('src', iconurl);
     $("#temperature").text(data.main.temp + " °C");
-    $("#max-temp").text("highest: "+data.main.temp_max+" °C");
+    $("#max-temp").text("Highest: "+data.main.temp_max+" °C");
     $("#min-temp").text("Lowest: "+data.main.temp_min+" °C");
     $("#wind").text(`Wind: ${Math.floor(data.wind.speed * 3.6)} Km/h`);
     $("#humidity").text("Humidity: "+data.main.humidity+" %");
-    $("#city-name").html(data.name+`<span id="country-name"class="badge badge-light">Light</span>`);
+    $("#city-name").html(data.name+`<span id="country-name"class="badge badge-primary">Light</span>`);
     $("#country-name").text(data.sys.country);
     $("#description").text(data.weather[0].description);
     $(".hide").removeClass("hide");
+    // updateBackgroundImage(data);
 };
+
+// function updateBackgroundImage(data){
+//     $(".bg-image").css({"background-image": "url(/assets/images/clear_sky.jpg)"}); 
+// };
 
 function searchCity() {
     let city = $("#city").val();
