@@ -9,6 +9,7 @@ body {
 body {
     color: white;
     font-weight: 500;
+    letter-spacing: 0.4px;
 }
 
 #weather-status {
