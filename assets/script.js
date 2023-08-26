@@ -1,17 +1,36 @@
 const key = 'f132a94011cbf4355115fe11f57a3462';
-
 async function getWeatherData(city) {
     try{
         const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + ", US,uk&units=metric&appid=" + key);
         const data = await response.json();
-        console.log(data);
         updateDOM(city, data);  
     } catch (error) {
         alert("This is not a valid city name!");
     };
-
-
 };
+
+async function getForecastWeatherData(city) {
+    try{
+        const responseGeo = await fetch("http://api.openweathermap.org/geo/1.0/direct?q=" +city+ "&limit=1&appid=" + key);
+        const dataGeo = await responseGeo.json();
+        console.log(dataGeo);
+        // const lat = dataGeo.lat;
+        // const lon = dataGeo.lon;
+        // console.log(lon, lat);
+         
+    } catch (error) {
+        alert("We could get the geo location, sorry!");
+    };
+    
+//     try{
+//         const responseForecast = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat={51.5073219}&lon={-0.1276474}" + ", US,uk&units=metric&appid=" + key);
+//         const dataForecast = await responseForecast.json();
+//         console.log(dataForecast);
+         
+//     } catch (error) {
+//         alert("We could provide forecast, sorry!");
+//     };
+// };
 
 function updateDOM(city, data) {
     var iconcode = data.weather[0].icon;
@@ -36,8 +55,9 @@ function updateDOM(city, data) {
 function searchCity() {
     let city = $("#city").val();
     getWeatherData(city);
+    getForecastWeatherData(city);
 };
 
 $(":button").on("click", searchCity);
 
-
+}
