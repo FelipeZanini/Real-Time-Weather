@@ -1,9 +1,9 @@
 const key = 'f132a94011cbf4355115fe11f57a3462';
-async function getWeatherData(city) {
+async function getCurrentWeatherData(city) {
     try {
         const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + ", US,uk&units=metric&appid=" + key);
         const data = await response.json();
-        updateDOM(city, data);
+        currentWeather(city, data);
     } catch (error) {
         alert("This is not a valid city name!");
     };
@@ -25,7 +25,7 @@ async function getForecastWeatherData(city) {
     };
 };
 
-function updateDOM(city, data) {
+function currentWeather(city, data) {
     var iconcode = data.weather[0].icon;
     var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
     $('#wicon').attr('src', iconurl);
@@ -37,19 +37,21 @@ function updateDOM(city, data) {
     $("#city-name").html(data.name + `<span id="country-name"class="badge badge-primary">Light</span>`);
     $("#country-name").text(data.sys.country);
     $("#description").text(data.weather[0].description);
-    $(".hide").removeClass("hide");
-    // updateBackgroundImage(data);
 };
 
-// function updateBackgroundImage(data){
-//     $(".bg-image").css({"background-image": "url(/assets/images/clear_sky.jpg)"}); 
-// };
+function ForecastWeather(){
+    getForecastWeatherData($("#city").val());
+    $("#current-weather-box").addClass("hide");
+    $("#forecast-weather-box").removeClass("hide");
+};
 
 function searchCity() {
+    $("#forecast-weather-box").addClass("hide");
     let city = $("#city").val();
-    getWeatherData(city);
-    getForecastWeatherData(city);
+    getCurrentWeatherData(city);
+    setTimeout(() => $("#current-weather-box").removeClass("hide") , 400);
 };
 
-$(":button").on("click", searchCity);
+$("#search-button").on("click", searchCity);
+$("#forecast-button").on("click", ForecastWeather);
 

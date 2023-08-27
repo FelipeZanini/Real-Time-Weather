@@ -46,6 +46,12 @@ body {
     font-size: 2rem;
 }
 
+#forecast-button{
+    background-color: transparent;
+    padding: 4px;
+    border-radius: 5px;
+}
+
 .fa, .fas{
     font-size: 18px;
 }
