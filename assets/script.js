@@ -18,12 +18,29 @@ async function getForecastWeatherData(city) {
 
         const responseForecast = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + lon + "&appid=" + key);
         const dataForecast = await responseForecast.json();
-        console.log(dataForecast);
+        ForecastWeather(city, dataForecast);
 
     } catch (error) {
         alert("We could get the city forecast, sorry!");
     };
 };
+
+function searchForecastWeather(){
+    getForecastWeatherData($("#city").val());
+    $("#current-weather-box").addClass("hide");
+    $("#forecast-weather-box").removeClass("hide");
+};
+
+function searchCity() {
+    $("#forecast-weather-box").addClass("hide");
+    let city = $("#city").val();
+    getCurrentWeatherData(city);
+    setTimeout(() => $("#current-weather-box").removeClass("hide") , 400);
+};
+
+$("#search-button").on("click", searchCity);
+$("#forecast-button").on("click", searchForecastWeather);
+
 
 function currentWeather(city, data) {
     var iconcode = data.weather[0].icon;
@@ -39,19 +56,13 @@ function currentWeather(city, data) {
     $("#description").text(data.weather[0].description);
 };
 
-function ForecastWeather(){
-    getForecastWeatherData($("#city").val());
-    $("#current-weather-box").addClass("hide");
-    $("#forecast-weather-box").removeClass("hide");
+function ForecastWeather(city, dataForecast) {
+console.log(city, dataForecast);
+let weatherIcon = $('.weather-icon')
+
+for(let i = 0; i < 8; i++){
+    $(weatherIcon[i]).attr('src', "http://openweathermap.org/img/w/" + dataForecast.daily[i].weather[0].icon + ".png");
+    console.log(dataForecast.daily[i].weather[0].icon); 
 };
 
-function searchCity() {
-    $("#forecast-weather-box").addClass("hide");
-    let city = $("#city").val();
-    getCurrentWeatherData(city);
-    setTimeout(() => $("#current-weather-box").removeClass("hide") , 400);
 };
-
-$("#search-button").on("click", searchCity);
-$("#forecast-button").on("click", ForecastWeather);
-
