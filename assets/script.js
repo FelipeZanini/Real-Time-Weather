@@ -63,8 +63,12 @@ let day = $('.day');
 let highestTemperature = $(".highest-temp");
 let lowestTemperature = $(".lowest-temp");
 
+// var dt = new Date(dataForecast.daily[i].dt);
+// console.log(dt.getDay()); 
+
 for(let i = 0; i < 8; i++){
     $(weatherIcon[i]).attr('src', "http://openweathermap.org/img/w/" + dataForecast.daily[i].weather[0].icon + ".png");
+    $(day[i]).text(dataForecast.daily[i].dt);
     $(highestTemperature[i]).text(Math.round(dataForecast.daily[i].temp.max -273.15) + " °C");
     $(lowestTemperature[i]).text(Math.round(dataForecast.daily[i].temp.min -273.15) + " °C");
     
