@@ -58,11 +58,16 @@ function currentWeather(city, data) {
 
 function ForecastWeather(city, dataForecast) {
 console.log(city, dataForecast);
-let weatherIcon = $('.weather-icon')
+let weatherIcon = $('.weather-icon');
+let day = $('.day');
+let highestTemperature = $(".highest-temp");
+let lowestTemperature = $(".lowest-temp");
 
 for(let i = 0; i < 8; i++){
     $(weatherIcon[i]).attr('src', "http://openweathermap.org/img/w/" + dataForecast.daily[i].weather[0].icon + ".png");
-    console.log(dataForecast.daily[i].weather[0].icon); 
+    $(highestTemperature[i]).text(Math.round(dataForecast.daily[i].temp.max -273.15) + " °C");
+    $(lowestTemperature[i]).text(Math.round(dataForecast.daily[i].temp.min -273.15) + " °C");
+    
 };
 
 };
