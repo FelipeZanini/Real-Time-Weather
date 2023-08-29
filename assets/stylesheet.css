@@ -55,6 +55,9 @@ html, body, main{
 
 .highest-temp, .lowest-temp {
     font-size: 17px;
+    position: relative;
+    right: 2px;
+    bottom: -16px;
 }
 
 .day {
@@ -84,7 +87,7 @@ html, body, main{
     margin: 0 !important;
 }
 
-@media screen and (min-width:720px) {
+@media screen and (min-width:630px) {
     #weather-status {
         padding-top: 30px;
         font-size: 3.5rem;
@@ -119,19 +122,29 @@ html, body, main{
 
     #forecast-city{
         margin-top: 45px;
-        margin-bottom: 65px;
+        margin-bottom: 37px;
         font-size: 40px;
     }
 
     .weather-icon{
         width: 75px;
         height: 75px;
-        text-align: right;
+        position: relative;
+        left: 26px;
+    }
+
+    .day{
+        position: relative;
+        left: 27px;
+        top: 12px;
     }
 
     .highest-temp, .lowest-temp {
         font-size: 25px;
         text-align: left;
+        position: relative;
+        right: 26px;
+        bottom: -18px;
     }
 
 }
