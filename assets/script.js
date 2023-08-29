@@ -10,6 +10,7 @@ async function getCurrentWeatherData(city) {
 };
 
 async function getForecastWeatherData(city) {
+    $("#forecast-button").addClass("hide");
     try {
         const responseGeo = await fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + key);
         const dataGeo = await responseGeo.json();
@@ -36,8 +37,8 @@ function searchCity() {
     let city = $("#city").val();
     getCurrentWeatherData(city);
     setTimeout(() => $("#current-weather-box").removeClass("hide") , 400);
+    $("#forecast-button").removeClass("hide");
 };
-
 $("#search-button").on("click", searchCity);
 $("#forecast-button").on("click", searchForecastWeather);
 
@@ -51,13 +52,12 @@ function currentWeather(city, data) {
     $("#min-temp").text("Lowest: " + data.main.temp_min + " °C");
     $("#wind").text(`Wind: ${Math.floor(data.wind.speed * 3.6)} Km/h`);
     $("#humidity").text("Humidity: " + data.main.humidity + " %");
-    $("#city-name").html(data.name + `<span id="country-name"class="badge badge-primary">Light</span>`);
+    $("#city-name").html(data.name + `<span  style="background-color:blue"id="country-name" class="badge badge-info">Light</span>`);
     $("#country-name").text(data.sys.country);
     $("#description").text(data.weather[0].description);
 };
 
 function ForecastWeather(city, dataForecast) {
-console.log(city, dataForecast);
 let cityForecast = $("#forecast-city");
 let weatherIcon = $('.weather-icon');
 let day = $('.day');
@@ -68,8 +68,8 @@ cityForecast.text(city.charAt(0).toUpperCase() + city.slice(1));
 
 for(let i = 0; i < 8; i++){
     $(weatherIcon[i]).attr('src', "http://openweathermap.org/img/w/" + dataForecast.daily[i].weather[0].icon + ".png");
-    $(highestTemperature[i]).text(Math.round(dataForecast.daily[i].temp.max -273.15) + " °C");
-    $(lowestTemperature[i]).text(Math.round(dataForecast.daily[i].temp.min -273.15) + " °C");
+    $(highestTemperature[i]).html("<i class='fas fa-thermometer-full'></i>  "+ Math.round(dataForecast.daily[i].temp.max -273.15) + " °C");
+    $(lowestTemperature[i]).html("<i class='fas fa-thermometer-quarter'></i>  " + Math.round(dataForecast.daily[i].temp.min -273.15) + " °C");
     
     var myDate = new Date( dataForecast.daily[i].dt*1000);
     let days = myDate.toString();
