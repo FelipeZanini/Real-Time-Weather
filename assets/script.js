@@ -27,18 +27,19 @@ async function getForecastWeatherData(city) {
 };
 
 function searchForecastWeather(){
-    getForecastWeatherData($("#city").val());
     $("#current-weather-box").addClass("hide");
     $("#forecast-weather-box").removeClass("hide");
+    getForecastWeatherData($("#city").val());
 };
 
 function searchCity() {
     $("#forecast-weather-box").addClass("hide");
     let city = $("#city").val();
     getCurrentWeatherData(city);
-    setTimeout(() => $("#current-weather-box").removeClass("hide") , 400);
+    $("#current-weather-box").removeClass("hide");
     $("#forecast-button").removeClass("hide");
 };
+
 $("#search-button").on("click", searchCity);
 $("#forecast-button").on("click", searchForecastWeather);
 
