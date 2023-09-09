@@ -1,14 +1,19 @@
+// API key from Open Weather Map
 const key = 'f132a94011cbf4355115fe11f57a3462';
+
+// Block of code to request the data from the API, current weather data
 async function getCurrentWeatherData(city) {
     try {
         const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + ", US,uk&units=metric&appid=" + key);
         const data = await response.json();
+        // Chunk of code to update the DOM, displaying the weather condition in the searched city
         currentWeather(city, data);
     } catch (error) {
         alert("This is not a valid city name!");
     };
 };
 
+// Block of code to request the data from the API, forecast weather data
 async function getForecastWeatherData(city) {
     $("#forecast-button").addClass("hide");
     try {
@@ -26,6 +31,7 @@ async function getForecastWeatherData(city) {
     };
 };
 
+// Function to search for the current weather data
 function searchForecastWeather(){
     $("#current-weather-box").addClass("hide");
     $("#forecast-weather-box").removeClass("hide");
